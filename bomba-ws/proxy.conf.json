@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "ws://localhost:8080",
+    "secure": true
+  }
+}
