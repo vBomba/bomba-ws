@@ -30,11 +30,8 @@ export class WsService {
   }
 
   private _openHandler(): void {
-    console.warn(
-      '%cRemoteStorage WebSocket connected!',
-      'color:green, font-weight: bold'
-    );
-
+    console.warn('%cWebSocket connected!', 'color:green; font-weight: bold');
+    this.send('WebSocket connected!');
     this._connected = true;
   }
 
@@ -43,7 +40,7 @@ export class WsService {
   }
 
   private _closeHandler(): void {
-    console.warn('RemoteStorage WebSocket closed, reconnecting...');
+    console.warn('WebSocket closed, reconnecting...');
 
     this._connected = false;
 
@@ -53,8 +50,12 @@ export class WsService {
   }
 
   private _errorHandler(ev: Event): void {
-    console.error('RemoteStorage WebSocket errored out.', ev);
+    console.error('WebSocket errored out.', ev);
 
     this._socket?.close();
+  }
+
+  public send(data: any): void {
+    this._socket?.send(data);
   }
 }
